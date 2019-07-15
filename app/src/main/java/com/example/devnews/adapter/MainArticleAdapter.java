@@ -1,6 +1,10 @@
 package com.example.devnews.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +15,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.devnews.R;
+import com.example.devnews.activity.WebActivity;
 import com.example.devnews.model.Article;
 import com.example.devnews.model.User;
 import com.example.devnews.utils.OnRecyclerViewItemClickListener;
 
+import java.text.DateFormat;
 import java.util.List;
 
 public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.ViewHolder> {
+
     private List<Article> articleArrayList;
-
-    private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
-
-    public MainArticleAdapter(List<Article> articleArrayList){
+    private Context context;
+    public MainArticleAdapter(List<Article> articleArrayList, Context context){
         this.articleArrayList = articleArrayList;
+        this.context = context;
     }
+    @NonNull
     @Override
     public MainArticleAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i ){
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_fragment_news,null);
@@ -33,9 +41,9 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainArticleAdapter.ViewHolder viewHolder, int position) {
-        final Article articleModel = articleArrayList.get(position);
-        final User userModel = articleModel.getUser();
+    public void onBindViewHolder(@NonNull MainArticleAdapter.ViewHolder viewHolder, final int position) {
+        Article articleModel = getItem(position);
+        User userModel =  articleModel.getUser();
         if (!TextUtils.isEmpty(articleModel.getTitle())){
             viewHolder.postTitle.setText(articleModel.getTitle());
         }
@@ -52,15 +60,37 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
 
         viewHolder.postComment.setText(String.valueOf(articleModel.getCommentsCount()));
 
+        if (articleModel.getCoverImage() != null) {
+//            viewHolder.postImage.setImageURI(Uri.parse(articleModel.getCoverImage()));
+            Glide.with(context)
+                    .load(articleModel.getCoverImage())
+                    .centerCrop()
+                    .dontAnimate().into(viewHolder.postImage);
+        }
+        if (userModel.getProfileImage() != null){
+            Glide.with(context)
+                    .load(userModel.getProfileImage())
+                    .circleCrop()
+                    .dontAnimate().into(viewHolder.userImage);
+        }
         viewHolder.postTimePublished.setText(articleModel.getPublishedTimestamp());
-        viewHolder.linearLayoutPost.setTag(articleModel);
-//        Glide.with(viewHolder.itemView.getContext())
-//                .load(articleModel.getCoverImage())
-//                .into(viewHolder.postImage);
-//
-//        Glide.with(viewHolder.itemView.getContext())
-//                .load(userModel.getProfileImage())
-//                .into(viewHolder.userImage);
+        viewHolder.linearLayoutPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Article article = getItem(position);
+                        if (!TextUtils.isEmpty(article.getUrl())) {
+                            Log.e("clicked url", article.getUrl());
+                            Intent webActivity = new Intent(view.getContext(), WebActivity.class);
+                            webActivity.putExtra("url",article.getUrl());
+                            context.startActivity(webActivity);
+                        }
+                        Log.d("ll_root","OnItemClick");
+            }
+        });
+    }
+
+    private Article getItem(int position) {
+        return articleArrayList.get(position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -88,29 +118,11 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
             userTitle = view.findViewById(R.id.item_fn_username);
             postSlug = view.findViewById(R.id.item_fn_post_slug);
             userImage = view.findViewById(R.id.item_fn_username_image);
-            linearLayoutPost = view.findViewById(R.id.item_fn_ll_root);
-            linearLayoutPost.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    if(onRecyclerViewItemClickListener != null){
-                            onRecyclerViewItemClickListener.onItemClick(getAdapterPosition(),view);
-                    }
-                }
-            });
-
-
-
-
-
-        }
+            linearLayoutPost = view.findViewById(R.id.item_fn_ll_root); }
     }
 
     @Override
     public int getItemCount() {
         return articleArrayList.size();
-    }
-
-    public void setOnRecyclerViewItemClickListener(OnRecyclerViewItemClickListener onRecyclerViewItemClickListener) {
-        this.onRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
     }
 }

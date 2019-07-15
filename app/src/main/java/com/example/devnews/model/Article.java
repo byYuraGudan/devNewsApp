@@ -1,3 +1,4 @@
+
 package com.example.devnews.model;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class Article {
     private String description;
     @SerializedName("cover_image")
     @Expose
-    private Object coverImage;
+    private String coverImage;
     @SerializedName("published_at")
     @Expose
     private String publishedAt;
@@ -51,9 +52,6 @@ public class Article {
     @SerializedName("user")
     @Expose
     private User user;
-    @SerializedName("flare_tag")
-    @Expose
-    private FlareTag flareTag;
 
     public String getTypeOf() {
         return typeOf;
@@ -87,11 +85,11 @@ public class Article {
         this.description = description;
     }
 
-    public Object getCoverImage() {
+    public String getCoverImage() {
         return coverImage;
     }
 
-    public void setCoverImage(Object coverImage) {
+    public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
     }
 
@@ -173,14 +171,6 @@ public class Article {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public FlareTag getFlareTag() {
-        return flareTag;
-    }
-
-    public void setFlareTag(FlareTag flareTag) {
-        this.flareTag = flareTag;
     }
 
 }

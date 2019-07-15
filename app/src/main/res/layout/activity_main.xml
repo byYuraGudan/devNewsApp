@@ -7,10 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     >
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_image_main"/>
     <FrameLayout
         android:id="@+id/main_root_layout_of_fragment"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
         <fragment
             android:layout_width="match_parent"

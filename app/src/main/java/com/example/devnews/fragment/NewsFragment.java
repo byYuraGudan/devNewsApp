@@ -44,7 +44,14 @@ public class NewsFragment extends Fragment implements OnRecyclerViewItemClickLis
 
         View view = inflater.inflate(R.layout.fragment_news,null);
         recyclerView = view.findViewById(R.id.fragment_news_rv);
-        linearLayoutManager = new LinearLayoutManager(view.getContext());
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Article>> call = apiService.getArticles();
@@ -52,22 +59,21 @@ public class NewsFragment extends Fragment implements OnRecyclerViewItemClickLis
             @Override
             public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
                 Log.d("response",String.valueOf(response.body()));
-                    List<Article> articleList = response.body();
-                    final MainArticleAdapter mainArticleAdapter = new MainArticleAdapter(articleList);
-                    mainArticleAdapter.setOnRecyclerViewItemClickListener(NewsFragment.this);
-                    recyclerView.setAdapter(mainArticleAdapter);
+                List<Article> articleList = response.body();
+                MainArticleAdapter mainArticleAdapter = new MainArticleAdapter(articleList, getContext());
+                recyclerView.setAdapter(mainArticleAdapter);
             }
 
             @Override
             public void onFailure(Call<List<Article>> call, Throwable t) {}
         });
-
-        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
     }
 
     public static NewsFragment newInstance() {

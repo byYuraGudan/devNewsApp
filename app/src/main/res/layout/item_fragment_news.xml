@@ -19,8 +19,6 @@
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:src="@drawable/ic_news_32dp"
-            android:tag="image_tag"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="10dp"/>
@@ -44,15 +42,16 @@
             android:textColor="@color/colorGray"
             android:layout_toEndOf="@id/item_fn_username_image"
             android:layout_below="@id/item_fn_username" />
+
         <ImageView
             android:id="@+id/item_fn_post_image"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/item_fn_post_slug"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/ic_news_32dp"
-            android:tag="image_post_tag" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:id="@+id/item_fn_post_title"
@@ -61,8 +60,7 @@
             android:layout_marginTop="2dp"
             android:text="@string/title"
             android:textColor="@color/colorBlack"
-            android:layout_toEndOf="@id/item_fn_post_image"
-            android:layout_below="@id/item_fn_post_slug"/>
+            android:layout_below="@id/item_fn_post_image"/>
 
         <TextView
             android:id="@+id/item_fn_post_description"
@@ -70,39 +68,55 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/description_post"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/description"
             android:textColor="@color/colorGray"
-            android:layout_toEndOf="@id/item_fn_post_image"
             android:layout_below="@id/item_fn_post_title"/>
 
-        <TextView
-            android:id="@+id/item_fn_like"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_publish_data"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_like_24dp"
+            android:layout_below="@id/item_fn_post_description">
 
-            android:layout_marginHorizontal="3dp"
-            android:layout_toEndOf="@id/item_fn_post_image"
-            android:layout_below="@id/item_fn_post_description"/>
+            <TextView
+                android:id="@+id/item_fn_like"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_like_24dp"
+                android:drawablePadding="2dp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintEnd_toStartOf="@id/item_fn_comment" />
 
-        <TextView
-            android:id="@+id/item_fn_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_comment_24dp"
-            android:layout_toEndOf="@id/item_fn_like"
-            android:layout_below="@id/item_fn_post_description"
-            android:layout_marginHorizontal="3dp" />
+            <TextView
+                android:id="@+id/item_fn_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:drawableStart="@drawable/ic_comment_24dp"
+                android:drawablePadding="2dp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@id/item_fn_like"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:id="@+id/item_fn_time_published"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_fn_post_description"
-            android:text="2019-07-10T04:07:11Z"
-            android:layout_marginHorizontal="3dp"
             android:layout_alignParentEnd="true"
-            android:gravity="end"/>
+            android:layout_marginHorizontal="3dp"
+            android:gravity="end"
+            android:text="asdasdasdasdasdasd"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            android:layout_below="@id/cl_publish_data"
+            android:layout_alignParentStart="true"/>
     </RelativeLayout>
 
 
