@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dim_post_slug">10sp</dimen>
+    <dimen name="description_post">13sp</dimen>
+</resources>

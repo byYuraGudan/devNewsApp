@@ -32,7 +32,6 @@ import retrofit2.Response;
 public class NewsFragment extends Fragment implements OnRecyclerViewItemClickListener {
 
     private RecyclerView recyclerView;
-    private Toolbar toolbar;
     private LinearLayoutManager linearLayoutManager;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,9 +41,9 @@ public class NewsFragment extends Fragment implements OnRecyclerViewItemClickLis
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_news,null);
         recyclerView = view.findViewById(R.id.fragment_news_rv);
-        toolbar = view.findViewById(R.id.fragment_news_toolbar);
         linearLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
