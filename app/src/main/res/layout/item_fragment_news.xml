@@ -11,19 +11,16 @@
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true">
     <LinearLayout
+        android:id="@+id/item_fn_ll_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/item_fn_ll_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/colorPrimary">
-
+                android:background="@color/colorAccent">
                 <ImageView
                     android:id="@+id/item_fn_username_image"
                     android:tag="image_tag"
@@ -47,20 +44,17 @@
                         android:text="User name" />
 
                     <TextView
-                        android:id="@+id/item_fn_user_description"
+                        android:id="@+id/item_fn_post_slug"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|left"
                         android:layout_marginTop="5dp"
-                        android:text="User description" />
+                        android:text="Post slug" />
 
                 </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/item_fn_ll_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -75,6 +69,7 @@
                     android:layout_weight="1"
                     android:src="@drawable/ic_news_32dp"/>
                 <LinearLayout
+                    android:id="@+id/item_fn_ll_post_information"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -96,6 +91,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Description" />
                     <LinearLayout
+                        android:id="@+id/item_fn_ll_post_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -107,13 +103,7 @@
                             android:drawableStart="@drawable/ic_like_24dp"
                             android:text="2"
                             android:layout_weight="1"/>
-                        <TextView
-                            android:id="@+id/item_fn_watch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ic_watch_24dp"
-                            android:text="3"
-                            android:layout_weight="1"/>
+
                         <TextView
                             android:id="@+id/item_fn_comment"
                             android:layout_width="wrap_content"
@@ -122,10 +112,14 @@
                             android:text="4"
                             android:layout_weight="1"/>
                     </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/item_fn_time_published"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019-07-10T04:07:11Z"
+                        android:textSize="10sp"
+                        android:layout_gravity="center"/>
                 </LinearLayout>
-            </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>
