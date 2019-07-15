@@ -11,7 +11,10 @@
         android:id="@+id/main_root_layout_of_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.devnews.fragment.NewsFragment"/>
     </FrameLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/main_navigation_view"

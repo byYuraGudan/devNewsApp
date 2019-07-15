@@ -49,12 +49,12 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
         if (!TextUtils.isEmpty(articleModel.getSlug())){
             viewHolder.postSlug.setText(articleModel.getSlug());
         }
-        viewHolder.postLike.setText(articleModel.getPositiveReactionsCount());
+        viewHolder.postLike.setText(String.valueOf(articleModel.getPositiveReactionsCount()));
 
-        viewHolder.postComment.setText(articleModel.getCommentsCount());
+        viewHolder.postComment.setText(String.valueOf(articleModel.getCommentsCount()));
 
         viewHolder.postTimePublished.setText(articleModel.getPublishedTimestamp());
-//
+        viewHolder.linearLayoutPost.setTag(articleModel);
 //        Glide.with(viewHolder.itemView.getContext())
 //                .load(articleModel.getCoverImage())
 //                .into(viewHolder.postImage);
@@ -98,6 +98,7 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
                     }
                 }
             });
+
 
 
 

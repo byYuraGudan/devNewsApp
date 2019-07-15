@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.devnews.R;
+import com.example.devnews.activity.WebActivity;
 import com.example.devnews.adapter.MainArticleAdapter;
 import com.example.devnews.model.Article;
 import com.example.devnews.rests.ApiClient;
@@ -45,24 +45,22 @@ public class NewsFragment extends Fragment implements OnRecyclerViewItemClickLis
         View view = inflater.inflate(R.layout.fragment_news,null);
         recyclerView = view.findViewById(R.id.fragment_news_rv);
         toolbar = view.findViewById(R.id.fragment_news_toolbar);
-        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Article>> call = apiService.getArticles();
         call.enqueue(new Callback<List<Article>>() {
             @Override
             public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
-                Log.d("respons",String.valueOf(response.body()));
-                if(response.body().size() > 0){
+                Log.d("response",String.valueOf(response.body()));
                     List<Article> articleList = response.body();
                     final MainArticleAdapter mainArticleAdapter = new MainArticleAdapter(articleList);
                     mainArticleAdapter.setOnRecyclerViewItemClickListener(NewsFragment.this);
-                }
+                    recyclerView.setAdapter(mainArticleAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<Article>> call, Throwable t) {
-
-            }
+            public void onFailure(Call<List<Article>> call, Throwable t) {}
         });
 
         return view;
@@ -86,13 +84,13 @@ public class NewsFragment extends Fragment implements OnRecyclerViewItemClickLis
     public void onItemClick(int position, View view) {
         switch (view.getId()){
             case R.id.item_fn_ll_root:
-//                Article article = view.getTag();
-//                if (!TextUtils.isEmpty(article.getUrl())) {
-//                    Log.e("clicked url", article.getUrl());
-//                    Intent webActivity = new Intent(this,WebActivity.class);
-//                    webActivity.putExtra("url",article.getUrl());
-//                    startActivity(webActivity);
-//                }
+                Article article = (Article) view.getTag();
+                if (!TextUtils.isEmpty(article.getUrl())) {
+                    Log.e("clicked url", article.getUrl());
+                    Intent webActivity = new Intent(view.getContext(), WebActivity.class);
+                    webActivity.putExtra("url",article.getUrl());
+                    startActivity(webActivity);
+                }
                 Log.d("ll_root","OnItemClick");
                 break;
         }
