@@ -15,7 +15,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView navigationView;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
-        Glide.with(this)
-                .load("https://res.cloudinary.com/practicaldev/image/fetch/s--syDhixzM--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/tsmt6nvh4xhptbdxty7m.jpg")
-                .into((ImageView)findViewById(R.id.id_image_main));
+
     }
 
     @Override

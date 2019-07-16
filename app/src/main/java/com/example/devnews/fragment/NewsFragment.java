@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsFragment extends Fragment implements OnRecyclerViewItemClickListener {
+public class NewsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
@@ -83,21 +83,5 @@ public class NewsFragment extends Fragment implements OnRecyclerViewItemClickLis
         NewsFragment fragment = new NewsFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onItemClick(int position, View view) {
-        switch (view.getId()){
-            case R.id.item_fn_ll_root:
-                Article article = (Article) view.getTag();
-                if (!TextUtils.isEmpty(article.getUrl())) {
-                    Log.e("clicked url", article.getUrl());
-                    Intent webActivity = new Intent(view.getContext(), WebActivity.class);
-                    webActivity.putExtra("url",article.getUrl());
-                    startActivity(webActivity);
-                }
-                Log.d("ll_root","OnItemClick");
-                break;
-        }
     }
 }

@@ -8,4 +8,7 @@
     <color name="colorSilverBluer">#73828F</color>
     <color name="colorBackgroundRV">#ECECEC</color>
     <color name="colorbackgroundCV">#FDFDFE</color>
+    <color name="colorProfileInformation">#CAEFE8</color>
+    <color name="colorProfileUsername">#00A0B2</color>
+    <color name="colorProfileBio">#00D3DB</color>
 </resources>

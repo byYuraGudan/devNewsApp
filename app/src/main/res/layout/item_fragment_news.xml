@@ -4,120 +4,131 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="3dp"
     android:orientation="vertical"
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true"
     android:background="@color/colorbackgroundCV">
     <RelativeLayout
+        android:id="@+id/item_fn_rv_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_fn_ll_root">
-        <ImageView
-            android:id="@+id/item_fn_username_image"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_fn_rl_root_user">
+            <ImageView
+                android:id="@+id/item_fn_username_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"/>
+            <TextView
+                android:id="@+id/item_fn_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/item_fn_username_image"
+                android:layout_alignParentTop="true"
+                android:text="@string/user_name"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/item_fn_post_slug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dim_post_slug"
+                android:text="@string/post_slug"
+                android:textColor="@color/colorGray"
+                android:layout_toEndOf="@id/item_fn_username_image"
+                android:layout_below="@id/item_fn_username" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_fn_ll_root_post"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="10dp"/>
-        <TextView
-            android:id="@+id/item_fn_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_toEndOf="@id/item_fn_username_image"
-            android:layout_alignParentTop="true"
-            android:text="@string/user_name"
-            android:textColor="@color/colorBlack"/>
+            android:layout_below="@id/item_fn_rl_root_user">
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/item_fn_post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title"
+                android:textSize="17sp"
+                android:textColor="@color/colorBlack"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"/>
 
-        <TextView
-            android:id="@+id/item_fn_post_slug"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textSize="@dimen/dim_post_slug"
-            android:text="@string/post_slug"
-            android:textColor="@color/colorGray"
-            android:layout_toEndOf="@id/item_fn_username_image"
-            android:layout_below="@id/item_fn_username" />
+            <ImageView
 
-        <ImageView
-            android:id="@+id/item_fn_post_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_fn_post_slug"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:id="@+id/item_fn_post_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="@string/title"
-            android:textColor="@color/colorBlack"
-            android:layout_below="@id/item_fn_post_image"/>
-
-        <TextView
-            android:id="@+id/item_fn_post_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/description_post"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/description"
-            android:textColor="@color/colorGray"
-            android:layout_below="@id/item_fn_post_title"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_publish_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_fn_post_description">
+                android:id="@+id/item_fn_post_image"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="centerCrop"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/item_fn_post_title"/>
 
             <TextView
-                android:id="@+id/item_fn_like"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_like_24dp"
-                android:drawablePadding="2dp"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintEnd_toStartOf="@id/item_fn_comment" />
+                android:id="@+id/item_fn_post_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/description_post"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/description"
+                android:textColor="@color/colorGray"
+                android:layout_below="@id/item_fn_post_image"
+                android:padding="10dp"/>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_publish_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_fn_post_description">
+
+                <TextView
+                    android:id="@+id/item_fn_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_like_24dp"
+                    android:drawablePadding="2dp"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintEnd_toStartOf="@id/item_fn_comment" />
+
+                <TextView
+                    android:id="@+id/item_fn_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_comment_24dp"
+                    android:drawablePadding="2dp"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toEndOf="@id/item_fn_like"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
-                android:id="@+id/item_fn_comment"
+                android:id="@+id/item_fn_time_published"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:drawableStart="@drawable/ic_comment_24dp"
-                android:drawablePadding="2dp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toEndOf="@id/item_fn_like"
-                card_view:layout_constraintTop_toTopOf="parent" />
+                android:gravity="end"
+                android:textAlignment="center"
+                android:textSize="10sp"
+                android:layout_below="@id/cl_publish_data"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <TextView
-            android:id="@+id/item_fn_time_published"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginHorizontal="3dp"
-            android:gravity="end"
-            android:text="asdasdasdasdasdasd"
-            android:textAlignment="center"
-            android:textSize="10sp"
-            android:layout_below="@id/cl_publish_data"
-            android:layout_alignParentStart="true"/>
+
+        </RelativeLayout>
     </RelativeLayout>
+
 
 
 

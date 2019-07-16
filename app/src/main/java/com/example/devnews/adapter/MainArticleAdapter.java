@@ -2,7 +2,6 @@ package com.example.devnews.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,12 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.devnews.R;
+import com.example.devnews.activity.UserActivity;
 import com.example.devnews.activity.WebActivity;
 import com.example.devnews.model.Article;
 import com.example.devnews.model.User;
-import com.example.devnews.utils.OnRecyclerViewItemClickListener;
 
-import java.text.DateFormat;
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.ViewHolder> {
@@ -61,7 +61,6 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
         viewHolder.postComment.setText(String.valueOf(articleModel.getCommentsCount()));
 
         if (articleModel.getCoverImage() != null) {
-//            viewHolder.postImage.setImageURI(Uri.parse(articleModel.getCoverImage()));
             Glide.with(context)
                     .load(articleModel.getCoverImage())
                     .centerCrop()
@@ -74,7 +73,7 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
                     .dontAnimate().into(viewHolder.userImage);
         }
         viewHolder.postTimePublished.setText(articleModel.getPublishedTimestamp());
-        viewHolder.linearLayoutPost.setOnClickListener(new View.OnClickListener() {
+        viewHolder.postLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Article article = getItem(position);
@@ -85,6 +84,18 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
                             context.startActivity(webActivity);
                         }
                         Log.d("ll_root","OnItemClick");
+            }
+        });
+
+        viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User user = getItem(position).getUser();
+                    if (!TextUtils.isEmpty(user.getUsername())){
+                        Intent userActivity = new Intent(view.getContext(), UserActivity.class);
+                        userActivity.putExtra(UserActivity.USER_URL,user.getUsername());
+                        context.startActivity(userActivity);
+                    }
             }
         });
     }
@@ -104,7 +115,8 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
         private TextView postTimePublished;
         private TextView postComment;
 
-        private RelativeLayout linearLayoutPost;
+        private RelativeLayout postLayout;
+        private RelativeLayout userLayout;
 
         ViewHolder(View view){
             super(view);
@@ -118,7 +130,9 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
             userTitle = view.findViewById(R.id.item_fn_username);
             postSlug = view.findViewById(R.id.item_fn_post_slug);
             userImage = view.findViewById(R.id.item_fn_username_image);
-            linearLayoutPost = view.findViewById(R.id.item_fn_ll_root); }
+            postLayout = view.findViewById(R.id.item_fn_ll_root_post);
+            userLayout = view.findViewById(R.id.item_fn_rl_root_user);
+        }
     }
 
     @Override
