@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_item_news"
         android:title="News"
         android:icon="@drawable/ic_news_32dp"/>
-    <item
-        android:id="@+id/menu_item_news_tag"
-        android:title="News of tag"/>
+
+
 </menu>

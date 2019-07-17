@@ -12,7 +12,6 @@
         android:layout_height="match_parent">
     </FrameLayout>
     <com.google.android.material.navigation.NavigationView
-        app:headerLayout="@layout/navigation_header_image"
         android:id="@+id/main_navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -65,13 +65,13 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
                     .load(articleModel.getCoverImage())
                     .centerCrop()
                     .dontAnimate().into(viewHolder.postImage);
-        }
+        } else viewHolder.postImage.setVisibility(View.GONE);
         if (userModel.getProfileImage() != null){
             Glide.with(context)
                     .load(userModel.getProfileImage())
                     .circleCrop()
                     .dontAnimate().into(viewHolder.userImage);
-        }
+        } else viewHolder.userImage.setVisibility(View.GONE);
         viewHolder.postTimePublished.setText(articleModel.getPublishedTimestamp());
         viewHolder.postLayout.setOnClickListener(new View.OnClickListener() {
             @Override
