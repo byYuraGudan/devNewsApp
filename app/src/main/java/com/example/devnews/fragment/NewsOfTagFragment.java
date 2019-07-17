@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,22 +25,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsFragment extends Fragment {
-
+public class NewsOfTagFragment extends Fragment {
+    private SearchView searchView;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_news,null);
-        recyclerView = view.findViewById(R.id.fragment_news_rv);
-
+        View view = inflater.inflate(R.layout.fragment_news_of_tag,null);
+        searchView = view.findViewById(R.id.fn_tag_search_view);
+        recyclerView = view.findViewById(R.id.fn_tag_rv);
         return view;
     }
 
@@ -53,30 +49,58 @@ public class NewsFragment extends Fragment {
         call.enqueue(new Callback<List<Article>>() {
             @Override
             public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
-                Log.d("response",String.valueOf(response.body()));
+                Log.d("response", String.valueOf(response.body()));
                 List<Article> articleList = response.body();
                 MainArticleAdapter mainArticleAdapter = new MainArticleAdapter(articleList, getContext());
                 recyclerView.setAdapter(mainArticleAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<Article>> call, Throwable t) {}
+            public void onFailure(Call<List<Article>> call, Throwable t) {
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                Call<List<Article>> call = apiService.getArticlesOfTag(searchView.getQuery().toString());
+                call.enqueue(new Callback<List<Article>>() {
+                    @Override
+                    public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
+                        Log.d("response", String.valueOf(response.body()));
+                        List<Article> articleList = response.body();
+                        MainArticleAdapter mainArticleAdapter = new MainArticleAdapter(articleList, getContext());
+                        recyclerView.setAdapter(mainArticleAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Article>> call, Throwable t) {
+                    }
+                });
+                return false;
+            }
+
         });
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
     }
 
-    public static NewsFragment newInstance() {
+    public static NewsOfTagFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        NewsFragment fragment = new NewsFragment();
+        NewsOfTagFragment fragment = new NewsOfTagFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
 }

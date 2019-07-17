@@ -77,13 +77,13 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
             @Override
             public void onClick(View view) {
                 Article article = getItem(position);
-                        if (!TextUtils.isEmpty(article.getUrl())) {
-                            Log.e("clicked url", article.getUrl());
-                            Intent webActivity = new Intent(view.getContext(), WebActivity.class);
-                            webActivity.putExtra("url",article.getUrl());
-                            context.startActivity(webActivity);
-                        }
-                        Log.d("ll_root","OnItemClick");
+                if (!TextUtils.isEmpty(article.getUrl())) {
+                    Log.e("clicked url", article.getUrl());
+                    Intent webActivity = new Intent(view.getContext(), WebActivity.class);
+                    webActivity.putExtra("url",article.getUrl());
+                    context.startActivity(webActivity);
+                }
+                Log.d("ll_root","OnItemClick");
             }
         });
 
@@ -91,11 +91,11 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
             @Override
             public void onClick(View view) {
                 User user = getItem(position).getUser();
-                    if (!TextUtils.isEmpty(user.getUsername())){
-                        Intent userActivity = new Intent(view.getContext(), UserActivity.class);
-                        userActivity.putExtra(UserActivity.USER_URL,user.getUsername());
-                        context.startActivity(userActivity);
-                    }
+                if (!TextUtils.isEmpty(user.getUsername())){
+                    Intent userActivity = new Intent(view.getContext(), UserActivity.class);
+                    userActivity.putExtra(UserActivity.USER_URL,user.getUsername());
+                    context.startActivity(userActivity);
+                }
             }
         });
     }

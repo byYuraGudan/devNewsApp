@@ -4,4 +4,7 @@
         android:id="@+id/menu_item_news"
         android:title="News"
         android:icon="@drawable/ic_news_32dp"/>
+    <item
+        android:id="@+id/menu_item_news_tag"
+        android:title="News of tag"/>
 </menu>
