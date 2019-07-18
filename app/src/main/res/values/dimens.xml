@@ -2,4 +2,10 @@
 <resources>
     <dimen name="dim_post_slug">10sp</dimen>
     <dimen name="description_post">13sp</dimen>
+    <dimen name="reg_button_margin">25dp</dimen>
+    <dimen name="ic_drawable_padding">15dp</dimen>
+    <dimen name="mrg_content_autorizaiton">10dp</dimen>
+    <dimen name="mrg_horizontal_content_autorization">25dp</dimen>
+    <dimen name="mrg_fltbtn_horizontal">25dp</dimen>
+    <dimen name="mrg_fltbtn_vertical">25dp</dimen>
 </resources>

@@ -4,13 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.devnews.activity.Authorization;
+import com.example.devnews.activity.Registration;
 import com.example.devnews.fragment.NewsFragment;
 import com.example.devnews.model.UserInformation;
 import com.example.devnews.rests.ApiClient;
@@ -25,10 +32,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private TextView userName;
     private ImageButton imageProfile;
+    private SharedPreferences mySharedPreferences;
+    public static final String LOGIN = "user";
+    public static final String PASSWORD = "pass";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mySharedPreferences = getSharedPreferences(Authorization.MY_PREFERENCES, Context.MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         navigationView = findViewById(R.id.main_navigation_view);
         if (navigationView != null) {
@@ -55,6 +66,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("logining","onResume");
+        if(mySharedPreferences.contains(Authorization.LOGIN_USER)){
+            Log.d("logining","exist");
+            String user_name = mySharedPreferences.getString(Authorization.LOGIN_USER,"");
+            String pass_name = mySharedPreferences.getString(Authorization.PASS_USER,"");
+            if (!(user_name.equals(LOGIN) && pass_name.equals(PASSWORD))){
+                startActivity(new Intent(getApplicationContext(),Authorization.class));
+            }}
+        else {startActivity(new Intent(getApplicationContext(),Authorization.class));}
     }
 
     @Override

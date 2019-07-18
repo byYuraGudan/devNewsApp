@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout_autorization"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lin_layout_head_autorization"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBackround"
+        android:gravity="top"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_logo_autorization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="start"
+            android:padding="10dp"
+            android:text="@string/your_logo"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/lin_layout_head_autorization"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin_layout_head_autorization"
+        app:srcCompat="@drawable/ic_add_white_48dp" />
+
+    <ScrollView
+        android:id="@+id/scrollview_autorization"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin_layout_head_autorization"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:id="@+id/lin_layout_content_autorization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/input_layout_autorization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mrg_horizontal_content_autorization"
+                android:layout_marginTop="@dimen/mrg_content_autorizaiton"
+                android:layout_marginEnd="@dimen/mrg_horizontal_content_autorization"
+                android:layout_marginBottom="@dimen/mrg_content_autorizaiton"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_username_autorization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/text_input_username_autorization"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_frg_registration_person"
+                        android:drawablePadding="@dimen/ic_drawable_padding"
+                        android:hint="@string/text_username" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_pass_autorization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/text_input_pass_autorizathion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_frg_registration_lock"
+                        android:drawablePadding="@dimen/ic_drawable_padding"
+                        android:hint="@string/text_password"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_layout_fab_autorization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mrg_horizontal_content_autorization"
+                android:layout_marginTop="@dimen/mrg_content_autorizaiton"
+                android:layout_marginEnd="@dimen/mrg_horizontal_content_autorization"
+                android:layout_marginBottom="@dimen/mrg_content_autorizaiton"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrg_fltbtn_horizontal"
+                    android:layout_marginEnd="@dimen/mrg_fltbtn_horizontal"
+                    android:layout_weight="1"
+                    android:background="@color/colorBlue"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="centerCrop"
+                    app:backgroundTint="@color/colorBlue"
+                    app:srcCompat="@drawable/ic_bukva_f_256dp" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrg_fltbtn_horizontal"
+                    android:layout_marginEnd="@dimen/mrg_fltbtn_horizontal"
+                    android:layout_weight="1"
+                    android:background="@color/colorPurple"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:backgroundTint="@color/colorRed"
+                    app:srcCompat="@drawable/ic_bukva_g_256dp" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_twitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/mrg_fltbtn_horizontal"
+                    android:layout_marginEnd="@dimen/mrg_fltbtn_horizontal"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:backgroundTint="@color/colorBlueWhite"
+                    app:srcCompat="@drawable/ic_bird_256dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_layout_btn_authorization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mrg_horizontal_content_autorization"
+                android:layout_marginTop="@dimen/mrg_content_autorizaiton"
+                android:layout_marginEnd="@dimen/mrg_horizontal_content_autorization"
+                android:layout_marginBottom="@dimen/mrg_content_autorizaiton"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_sign_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@color/colorPurple"
+                    android:text="@string/btn_sign_in"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Forgot your password?" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

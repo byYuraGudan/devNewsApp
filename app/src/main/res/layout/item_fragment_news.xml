@@ -66,18 +66,18 @@
 
                 android:id="@+id/item_fn_post_image"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_fn_post_title"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@id/item_fn_post_title"/>
+                android:layout_marginBottom="5dp"
+                android:scaleType="centerInside" />
 
             <TextView
                 android:id="@+id/item_fn_post_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/description_post"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/description"
                 android:textColor="@color/colorGray"
@@ -119,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textAlignment="center"
+                android:padding="3dp"
                 android:textSize="10sp"
                 android:layout_below="@id/cl_publish_data"
                 android:layout_alignParentEnd="true"

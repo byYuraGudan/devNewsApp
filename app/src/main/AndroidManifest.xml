@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.Authorization" />
+        <activity android:name=".activity.Registration" />
+
     </application>
 
 </manifest>

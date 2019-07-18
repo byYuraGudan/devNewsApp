@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
     <color name="colorBlack">#4C4D4F</color>
     <color name="colorGray">#AEBBC1</color>
     <color name="colorSilverBluer">#73828F</color>
@@ -11,4 +9,12 @@
     <color name="colorProfileInformation">#CAEFE8</color>
     <color name="colorProfileUsername">#00A0B2</color>
     <color name="colorProfileBio">#00D3DB</color>
+    <color name="colorPrimaryDark">#4F4583</color>
+    <color name="colorAccent">#B584D5</color>
+    <color name="colorPurple">#B584D5</color>
+    <color name="colorBackround">#4F4583</color>
+    <color name="colorBlue">#365896</color>
+    <color name="colorBlueWhite">#45A9E4</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRed">#D95341</color>
 </resources>

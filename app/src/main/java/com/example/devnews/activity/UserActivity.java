@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,6 +30,10 @@ public class UserActivity extends AppCompatActivity {
     private ImageButton imageProfile;
     private TextView username;
     private TextView summary;
+    private TextView githubButton;
+    private TextView twitterButton;
+    private TextView locationButton;
+    private TextView websiteButton;
     private String username_url;
     public static final String USER_URL = "user_url";
     private UserInformation user = null;
@@ -38,6 +44,10 @@ public class UserActivity extends AppCompatActivity {
         imageProfile = findViewById(R.id.user_profile_photo);
         username = findViewById(R.id.user_profile_name);
         summary = findViewById(R.id.user_profile_summary);
+        githubButton = findViewById(R.id.github_user);
+        twitterButton = findViewById(R.id.twitter_user);
+        websiteButton = findViewById(R.id.website_user);
+        locationButton = findViewById(R.id.location_user);
         Intent intent = getIntent();
         Log.d("qwe",intent.getStringExtra(USER_URL));
         if (intent.getStringExtra(USER_URL)!= null) {
@@ -55,6 +65,21 @@ public class UserActivity extends AppCompatActivity {
                                 .load(user.getProfileImage())
                                 .circleCrop()
                                 .into(imageProfile);
+                        if (!TextUtils.isEmpty(user.getGithubUsername())){
+                            githubButton.setText("Github -> " + user.getGithubUsername());
+                        } else githubButton.setVisibility(View.GONE);
+                        if (!TextUtils.isEmpty( user.getTwitterUsername())){
+                            twitterButton.setText("Twitter -> " + user.getTwitterUsername());
+                        } else twitterButton.setVisibility(View.GONE);
+                        if (!TextUtils.isEmpty(user.getWebsiteUrl())){
+                            websiteButton.setText("WebSite -> " + user.getWebsiteUrl());
+                        } else websiteButton.setVisibility(View.GONE);
+                        if (!TextUtils.isEmpty(user.getLocation())){
+                            locationButton.setText("Location -> " + user.getLocation());
+                        } else locationButton.setVisibility(View.GONE);
+
+
+
                     }
 
                     @Override

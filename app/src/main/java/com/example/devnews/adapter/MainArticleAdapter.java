@@ -23,6 +23,9 @@ import com.example.devnews.model.User;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.ViewHolder> {
@@ -49,7 +52,7 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
         }
         if (!TextUtils.isEmpty(articleModel.getDescription())){
             viewHolder.postDescription.setText(articleModel.getDescription());
-        }
+        } else viewHolder.postDescription.setVisibility(View.GONE);
         if (!TextUtils.isEmpty(userModel.getName())){
             viewHolder.userTitle.setText(userModel.getName());
         }
@@ -63,7 +66,7 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
         if (articleModel.getCoverImage() != null) {
             Glide.with(context)
                     .load(articleModel.getCoverImage())
-                    .centerCrop()
+                    .centerInside()
                     .dontAnimate().into(viewHolder.postImage);
         } else viewHolder.postImage.setVisibility(View.GONE);
         if (userModel.getProfileImage() != null){
@@ -72,7 +75,15 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
                     .circleCrop()
                     .dontAnimate().into(viewHolder.userImage);
         } else viewHolder.userImage.setVisibility(View.GONE);
-        viewHolder.postTimePublished.setText(articleModel.getPublishedTimestamp());
+        try {
+            Log.d("date",articleModel.getPublishedTimestamp().toString());
+            Date date1= null;
+            date1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(articleModel.getPublishedTimestamp().toString());
+            viewHolder.postTimePublished.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date1));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            viewHolder.postTimePublished.setText(articleModel.getPublishedTimestamp().toString());
+        }
         viewHolder.postLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
