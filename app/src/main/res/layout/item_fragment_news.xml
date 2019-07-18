@@ -51,16 +51,17 @@
             android:id="@+id/item_fn_ll_root_post"
             android:layout_alignParentStart="true"
             android:layout_below="@id/item_fn_rl_root_user">
+
             <TextView
-                android:padding="5dp"
                 android:id="@+id/item_fn_post_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title"
-                android:textSize="17sp"
-                android:textColor="@color/colorBlack"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"/>
+                android:layout_alignParentTop="true"
+                android:padding="10dp"
+                android:text="@string/title"
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
 
             <ImageView
 
@@ -96,10 +97,12 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_like_24dp"
                     android:drawablePadding="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlue"
                     card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toStartOf="@id/item_fn_comment"
                     card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintEnd_toStartOf="@id/item_fn_comment" />
+                    card_view:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/item_fn_comment"
@@ -107,6 +110,8 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_comment_24dp"
                     android:drawablePadding="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlue"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toEndOf="@id/item_fn_like"
                     card_view:layout_constraintTop_toTopOf="parent" />

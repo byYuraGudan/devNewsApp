@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.devnews.activity.Authorization;
-import com.example.devnews.activity.Registration;
 import com.example.devnews.fragment.NewsFragment;
 import com.example.devnews.model.UserInformation;
 import com.example.devnews.rests.ApiClient;
@@ -33,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView userName;
     private ImageButton imageProfile;
     private SharedPreferences mySharedPreferences;
-    public static final String LOGIN = "user";
-    public static final String PASSWORD = "pass";
+    public static final String LOGIN_ACCOUNT = "user";
+    public static final String PASSWORD_ACCOUNT = "pass";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.main_root_layout_of_fragment, NewsFragment.newInstance()).addToBackStack(null).commit();
     }
 
     @Override
@@ -74,9 +74,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d("logining","onResume");
         if(mySharedPreferences.contains(Authorization.LOGIN_USER)){
             Log.d("logining","exist");
+            String user_account = mySharedPreferences.getString(MainActivity.LOGIN_ACCOUNT,"");
+            String pass_account = mySharedPreferences.getString(MainActivity.PASSWORD_ACCOUNT,"");
             String user_name = mySharedPreferences.getString(Authorization.LOGIN_USER,"");
             String pass_name = mySharedPreferences.getString(Authorization.PASS_USER,"");
-            if (!(user_name.equals(LOGIN) && pass_name.equals(PASSWORD))){
+            if (!(user_name.equals(user_account) && pass_name.equals(pass_account))){
                 startActivity(new Intent(getApplicationContext(),Authorization.class));
             }}
         else {startActivity(new Intent(getApplicationContext(),Authorization.class));}
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
         switch (id){
             case R.id.menu_item_news:
-                manager.beginTransaction().replace(R.id.main_root_layout_of_fragment, NewsFragment.newInstance()).commit();
+                manager.beginTransaction().replace(R.id.main_root_layout_of_fragment, NewsFragment.newInstance()).addToBackStack(null).commit();
                 break;
             case R.id.menu_item_logout:
                 SharedPreferences.Editor edit = mySharedPreferences.edit();

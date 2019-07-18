@@ -47,14 +47,14 @@ public class Authorization extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Log.d("onclick","clicked");
-                Log.d("onclick",login.getText().toString());
-                Log.d("onclick",password.getText().toString());
-                if ((login.getText().toString().equals(MainActivity.LOGIN)) && (password.getText().toString().equals(MainActivity.PASSWORD))){
+                Log.d("onclick",sharedPreferences.getString(MainActivity.LOGIN_ACCOUNT,""));
+                Log.d("onclick",sharedPreferences.getString(MainActivity.PASSWORD_ACCOUNT,""));
+                if ((login.getText().toString().equals(sharedPreferences.getString(MainActivity.LOGIN_ACCOUNT,"")))
+                        && (password.getText().toString().equals(sharedPreferences.getString(MainActivity.PASSWORD_ACCOUNT,"")))){
                     Log.d("onclick","equals");
                     SharedPreferences.Editor  editor = sharedPreferences.edit();
                     editor.putString(LOGIN_USER,login.getText().toString());
                     editor.putString(PASS_USER,password.getText().toString());
-                    editor.commit();
                     editor.apply();
                     finish();
                 }  else {
