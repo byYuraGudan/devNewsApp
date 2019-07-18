@@ -90,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.menu_item_news:
                 manager.beginTransaction().replace(R.id.main_root_layout_of_fragment, NewsFragment.newInstance()).commit();
                 break;
+            case R.id.menu_item_logout:
+                SharedPreferences.Editor edit = mySharedPreferences.edit();
+                edit.putString(Authorization.LOGIN_USER,"");
+                edit.putString(Authorization.PASS_USER,"");
+                edit.apply();
+                startActivity(new Intent(getBaseContext(),Authorization.class));
+                break;
         }
         return false;
     }
